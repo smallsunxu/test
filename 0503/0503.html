@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN" >
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BASE</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/shurenyun.css">
+</head>
+<body ng-app="BlankApp" ng-cloak>
+  <div layout="row" class="main">
+    <aside class="sidebar-main">
+      <div class="logo">
+        <a href="#"><img src="images/logo-white-full.svg"></a>
+      </div>
+      <ul>
+        <li class="active"><md-button ng-href="#"><i class="fa fa-tachometer"></i>首页</md-button></li>
+        <li><md-button ng-href="#"><i class="fa fa-server"></i>集群管理</md-button></li>
+        <li><md-button ng-href="#"><i class="fa fa-cube"></i>应用管理</md-button></li>
+        <li><md-button ng-href="#"><i class="fa fa-shopping-cart"></i>应用商店</md-button></li>
+        <li><md-button ng-href="#"><i class="fa fa-cubes"></i>应用编排</md-button></li>
+        <li><md-button ng-href="#"><i class="fa fa-cogs"></i>镜像构建</md-button></li>
+        <li><md-button ng-href="#"><i class="fa fa-search"></i>日志查询</md-button></li>
+      </ul>
+      <hr>
+      <hr>
+      <ul>
+        <li><md-button ng-href="#"><i class="fa fa-book"></i>用户手册</md-button></li>
+        <li><md-button ng-href="#"><i class="fa fa-coffee"></i>数人社区</md-button></li>
+        <li><md-button ng-href="#"><i class="fa fa-pencil-square-o"></i>工单反馈</md-button></li>
+      </ul>
+    </aside>
+    <div layout="column" flex class="big_box">
+      <nav ng-controller="AppCtrl" class="nav-main">
+        <md-toolbar>
+        <div class="md-toolbar-tools">
+       <!-- 	导航栏的弹出框-->
+        		<ul class="xuanxiang">
+				<li class="jiqun fa fa-server"><p>新建集群</p></li>
+				<li class="yingyong fa fa-cube"><p>新建应用</p></li>
+				<li class="jingxiang fa fa-cogs"><p>新建镜像</p></li>
+			</ul>
+			<ul class="tixing">
+				<li>云计算与Cloud Native|数人云CEO 王璞 @KVW 分享实录</li>
+				<li>技术干货|Docker容器中需要避免的十种常见错误</li>
+				<li>老肖语录|使用Docker做CI解惑</li>
+				<li>如何利用Mesos持久化存储方案部署ArangoDB集群</li>
+				<li>遇见Marathon：打造大规模容器生产环境</li>
+			</ul>
+			<ul class="enter">
+				<li><a href="#">用户中心</a></li>
+				<li><a href="#">登录</a></li>
+			</ul>
+          <md-button class="md-icon-button" aria-label="Settings">
+            <i class="fa fa-bars"></i>
+          </md-button>
+          <span flex></span>
+          <md-button class="md-icon-button" aria-label="Favorite">
+            <i class="fa fa-th"></i>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="More" ng-click="toggleRight()"
+      ng-hide="isOpenRight()">
+            <i class="fa fa-bell"></i>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="More">
+            <i class="fa fa-user"></i>
+          </md-button>
+        </div>
+</md-toolbar>
+</nav>
+	
+<!--我的部分-->	
+	<div class="apply">
+		<div class="apply_top">
+			<p>新建应用</p>
+			<div class="found">创建</div>
+			<div class="cancel">取消</div>
+		</div>
+		<div class="apply_bot" id="apply_bot">
+			<div class="apply_in">
+				<ol>
+					<li><em>应用名称<i>*</i></em><input type="text" placeholder="提示文字"/></li>
+					<li><em>选择集群<i>*</i></em><input type="text"/></li>
+					<li><em>镜像地址<i>*</i></em><input type="text" placeholder="镜像地址：版本号"/><span class="fa fa-cogs"></span><input type="checkbox" class="box_two"/><strong>强制拉取镜像</strong></li>
+					<li><em>网络地址<i>*</i> </em>  
+						<md-radio-group  ng-model = "data.group1" layout="row"> 
+				 		    <md-radio-button  value = "Apple"  class = "md-primary">网桥模式</md-radio-button>
+				      		<md-radio-button  value = "Mango">网桥模式</md-radio-button> 
+    						</md-radio-group >
+					</li>
+					<li><em>选择主机<i>*</i></em>
+						<select name="" class="path">
+							<option value="">主机路径</option>
+						</select>
+						<select name="">
+							<option value="">主机（默认随机）</option>
+						</select>
+					</li>
+					<li><em>挂载点<i>*</i></em><p class="fa fa-plus"></p><h>添加Docker参数</h>
+						<input id="apply_in_one" type="text" placeholder="主机路径"/><input id="apply_in_two" type="text" placeholder="容器路径"/>
+						<div class="delete fa fa-trash-o"></div>
+					</li>
+					<li><em>容器规格<i>*</i></em></li>
+					<li><em>容器个数<i>*</i></em><input type="text" ><input type="checkbox" class="box_two"/><strong>1容器：1主机</strong></li>
+				</ol>
+
+			</div>
+			<div class="lower_link" id="lower_link">
+				<div class="circles" id="circles">
+					<span class="circles_down fa fa-chevron-down"></span>
+				</div>
+			</div>
+			<div class="clear box"></div>
+			<div class="apply_extend" id="apply_extend">
+				<ul>
+					<li id="apply_ones"><p>应用地址</p><span class="fa fa-plus"></span><h>添加应用地址</h></li>
+					<li><p>环境变量</br><i>自定义环境变量</i></p><span class="fa fa-plus"></span><h>添加环境变量</h></li>
+					<li><p>Docker</br><i>自定义Docker</i></p><span class="fa fa-plus"></span><h>添加Docker参数</h></li>
+					<li><p>日志目录</br><i>应用的日志文件目录</i></p><span class="fa fa-plus"></span><h>添加日志目录</h></li>
+					<li><p>CMD</p><input class="" type="text" placeholder="输入需要运行的命令"/></li>
+				</ul>
+			</div>
+		</div>
+		<div class="apply_foot">
+			<div class="found_copy">创建</div>
+			<div class="cancel_copy">取消</div>
+		</div>
+	</div>
+	
+	
+	
+</div>
+<div class="blank">
+	<div class="tab">
+		<p>数人镜像推荐</p>
+		<div class="tab_head">
+			<ul>
+				<li>数人推荐镜像</li>
+				<li>用户镜像列表<span>默认选择最新版本</span></li>
+			</ul>
+		</div>
+		<div class="tab_foot">
+			<ol>
+				<li id="tab_foot_one">2048</li>
+				<li>Mysql</li>
+				<li>Wordpress</li>
+				<li>Redis</li>
+				<li>Nginx</li>
+				<li>Jenkins</li>
+			</ol>
+			<ol class="hidden">
+				<li>2048</li>
+				<li>Mysql</li>
+				<li>Wordpress</li>
+				<li>Redis</li>
+				<li>Nginx</li>
+				<li>Jenkins</li>
+			</ol>
+		</div>
+		<div class="tab_can">取消</div>
+		<div class="tab_plish">完成</div>
+		<div class="tab_close fa fa-times"></div>
+	</div>
+</div>
+
+<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+  <md-toolbar class="md-theme-light">
+    <h1 class="md-toolbar-tools">Sidenav Right</h1>
+  </md-toolbar>
+  <md-content ng-controller="RightCtrl" layout-padding>
+    <div ng-controller="AppCtrl2">
+      <md-content>
+        <md-list>
+          <md-list-item class="md-3-line" ng-repeat="item in todos">
+            <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
+              <div class="md-list-item-text" layout="column">
+                <h3>{{ item.who }}</h3>
+                <h4>{{ item.what }}</h4>
+                <p>{{ item.notes }}</p>
+              </div>
+            </md-list-item>
+          </md-list>
+        </md-content>
+      </div>
+      <md-button ng-click="close()" class="md-icon-button">
+        <i class="fa fa-angle-double-right"></i>
+      </md-button>
+    </md-content>
+  </md-sidenav>
+</div>
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="bower_components/angular-aria/angular-aria.min.js"></script>
+<script src="bower_components/angular-messages/angular-messages.min.js"></script>
+<script src="bower_components/angular-material/angular-material.min.js"></script>
+<script src="js/script.js"></script>
+<script src="js/xiala.js"></script>
+<!-- Your application bootstrap  -->
+</body>
+</html>
