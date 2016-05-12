@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN" >
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BASE</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/shurenyun.css">
+  <style>
+
+  </style>
+</head>
+<body ng-app="BlankApp" ng-cloak>
+  <div layout="row" class="main">
+    <aside class="sidebar-main">
+      <div class="logo">
+        <a href="#"><img src="images/logo-white-full.svg"></a>
+      </div>
+      <ul>
+        <li class="active"><md-button ng-href="#"><i class="fa fa-tachometer"></i>首页</md-button></li>
+        <li><md-button ng-href="#"><i class="fa fa-server"></i>集群管理</md-button></li>
+        <li><md-button ng-href="#"><i class="fa fa-cube"></i>应用管理</md-button></li>
+        <li><md-button ng-href="#"><i class="fa fa-shopping-cart"></i>应用商店</md-button></li>
+        <li><md-button ng-href="#"><i class="fa fa-cubes"></i>应用编排</md-button></li>
+        <li><md-button ng-href="#"><i class="fa fa-cogs"></i>镜像构建</md-button></li>
+        <li><md-button ng-href="#"><i class="fa fa-search"></i>日志查询</md-button></li>
+      </ul>
+      <hr>
+      <hr>
+      <ul>
+        <li><md-button ng-href="#"><i class="fa fa-book"></i>用户手册</md-button></li>
+        <li><md-button ng-href="#"><i class="fa fa-coffee"></i>数人社区</md-button></li>
+        <li><md-button ng-href="#"><i class="fa fa-pencil-square-o"></i>工单反馈</md-button></li>
+      </ul>
+    </aside>
+    <div class="homepage_main" layout="column" flex>
+      <nav ng-controller="AppCtrl" class="nav-main">
+        <md-toolbar>
+        <div class="md-toolbar-tools">
+	        <ul class="xuanxiang">
+	    			<li class="jiqun fa fa-server"><p>新建集群</p></li>
+	    			<li class="yingyong fa fa-cube"><p>新建应用</p></li>
+	    			<li class="jingxiang fa fa-cogs"><p>新建镜像</p></li>
+    			</ul>
+    			<ul class="tixing">
+    				<li>云计算与Cloud Native|数人云CEO 王璞 @KVW 分享实录</li>
+    				<li>技术干货|Docker容器中需要避免的十种常见错误</li>
+    				<li>老肖语录|使用Docker做CI解惑</li>
+    				<li>如何利用Mesos持久化存储方案部署ArangoDB集群</li>
+    				<li>遇见Marathon：打造大规模容器生产环境</li>
+    			</ul>
+    			<ul class="enter">
+    				<li><a href="#">用户中心</a></li>
+    				<li><a href="#">登录</a></li>
+    			</ul>
+          <md-button class="md-icon-button" aria-label="Settings">
+            <i class="fa fa-bars"></i>
+          </md-button>
+          <span flex></span>
+          <md-button class="md-icon-button" aria-label="Favorite">
+            <i class="caidan fa fa-th"></i>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="More" ng-click="toggleRight()"
+      ng-hide="isOpenRight()">
+            <i class="fa fa-bell"></i>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="More">
+            <i class="fa fa-user"></i>
+          </md-button>
+        </div>
+</md-toolbar>
+</nav>
+
+<div class="content" id="content">
+	<!--<div class="scroll">-->
+	<div class="list">
+		<h class="name">主机名</h>
+		<ul>
+			<li><span class="state">机主状态</span><i class="font fa fa-heartbeat"></i></li>
+			<li class="address"><span class="adress_one">IP 地址</span>100.100.100.100</li>
+			<li class="cpu"><span>CPU</span>1核</li>
+			<li class="ram"><span>内存</span>993 MB</li>
+		</ul>
+		<ul>
+			<li><span>所属集群</span><a href="#">集群名称</a></li>
+			<li class="edition"><span>系统版本</span>Ubuntu</li>
+			<li class="agnet"><span>Agnet版本</span>v0.1.022400</li>
+		</ul>
+		<ul>
+			<li><span>创建时间</span>2016-10-24 20:10:24</li>
+			<li class="meut"><span>更新时间</span>2016-10-24 20:10:20:24</li>
+		</ul>
+		<ul>
+			<li><span>主机标签</span><from>标签一</from><from class="lab">标签二</from></li>
+		</ul>
+	</div>
+	<div class="bi  fa fa-pencil"></div>
+	<div class="shanchu  fa fa-trash-o"></div>
+	<div class="zuo fa fa-angle-left"></div>
+	<div class="you fa fa-angle-right"></div>
+	<!--点击加载更多组件-->
+<div class="homepage_bottom">
+	<div class="homepage_module" id="homepage_module">
+		<ul>
+			<li><span class="fa fa-heartbeat"></span>Dockerp<p>v1.9.1</p></li>
+			<li><span class="fa fa-heartbeat"></span>Zookeeper<p>v0.3</p></li>
+			<li><span class="fa fa-heartbeat"></span>节点组件<p>v0.3.3</p></li>
+			<li><span class="fa fa-heartbeat"></span>服务发现监控组件<p>v2.2</p></li>
+			<li><span class="fa fa-heartbeat"></span>日志收集组件<p>v0.5.8</p></li>
+			<li><span class="fa fa-heartbeat"></span>应用调度组件<p>v0.3</p></li>
+			<li><span class="fa fa-heartbeat"></span>主控组件<p>v0.3</p></li>
+			<li><span class="fa fa-heartbeat"></span>ZK 监控组件<p>v0.2</p></li>
+			<li><span class="fa fa-heartbeat"></span>监控组件<p>v1.4</p></li>
+		</ul>
+    <ul>
+      <li><span class="fa fa-heartbeat"></span>Dockerp<p>v1.9.1</p></li>
+      <li><span class="fa fa-heartbeat"></span>Zookeeper<p>v0.3</p></li>
+      <li><span class="fa fa-heartbeat"></span>节点组件<p>v0.3.3</p></li>
+      <li><span class="fa fa-heartbeat"></span>服务发现监控组件<p>v2.2</p></li>
+      <li><span class="fa fa-heartbeat"></span>日志收集组件<p>v0.5.8</p></li>
+      <li><span class="fa fa-heartbeat"></span>应用调度组件<p>v0.3</p></li>
+      <li><span class="fa fa-heartbeat"></span>主控组件<p>v0.3</p></li>
+      <li><span class="fa fa-heartbeat"></span>ZK 监控组件<p>v0.2</p></li>
+      <li><span class="fa fa-heartbeat"></span>监控组件<p>v1.4</p></li>
+    </ul>
+	</div>
+  	<div class="lower_link" id="lower_link">
+      <div class="circles" id="circles">
+        <span class="circles_down  fa fa-chevron-down"></span>
+      </div>
+    </div>
+	<div class="homepage_view">
+		<ul>
+			<li class="homepage_viewone"></li>
+			<li class="homepage_viewtwo"></li>
+			<li class="homepage_viewthre"></li>
+			<li class="homepage_viewfour"></li>
+		</ul>
+	</div>
+</div>
+<!--</div>-->
+</div>
+
+
+
+
+
+</div>
+
+<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+  <md-toolbar class="md-theme-light">
+    <h1 class="md-toolbar-tools">Sidenav Right</h1>
+  </md-toolbar>
+  <md-content ng-controller="RightCtrl" layout-padding>
+    <div ng-controller="AppCtrl2">
+      <md-content>
+        <md-list>
+          <md-list-item class="md-3-line" ng-repeat="item in todos">
+            <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
+              <div class="md-list-item-text" layout="column">
+                <h3>{{ item.who }}</h3>
+                <h4>{{ item.what }}</h4>
+                <p>{{ item.notes }}</p>
+              </div>
+            </md-list-item>
+          </md-list>
+        </md-content>
+      </div>
+      <md-button ng-click="close()" class="md-icon-button">
+        <i class="fa fa-angle-double-right"></i>
+      </md-button>
+    </md-content>
+  </md-sidenav>
+</div>
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/iscroll5.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="bower_components/angular-aria/angular-aria.min.js"></script>
+<script src="bower_components/angular-messages/angular-messages.min.js"></script>
+<script src="bower_components/angular-material/angular-material.min.js"></script>
+<!-- Your application bootstrap  -->
+<script src="js/script.js"></script>
+<script src="js/new_file.js"></script>
+</body>
+</html>
